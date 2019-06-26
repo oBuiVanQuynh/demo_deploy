@@ -1,0 +1,8 @@
+:concurrency: 5
+:pidfile: tmp/pids/sidekiq.pid
+:logfile: log/sidekiq.log
+:queues:
+  - default
+  - [high_priority, 2]
+:max_retries: 1
+:daemon: true

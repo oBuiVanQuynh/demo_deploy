@@ -1,0 +1,14 @@
+instance_name_tags:
+  staging:
+    app: xxx
+
+instance_ips:
+  staging:
+    admin:
+      - 127.0.0.1
+    front:
+      - 127.0.0.1
+    worker:
+      - 127.0.0.1
+    batch:
+      - 127.0.0.1

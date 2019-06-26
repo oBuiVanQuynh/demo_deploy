@@ -1,0 +1,3 @@
+#!/bin/bash
+
+LOCAL_DEPLOY=true deploy $1 $2

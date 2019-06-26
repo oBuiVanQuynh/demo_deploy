@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+require "aws-sdk"
+require "net/http"
+
+METADATA_ENDPOINT = "http://169.254.169.254/latest/meta-data/instance-id"
+
+ec2 = Aws::EC2::Client.new region: ENV["AWS_REGION"]
+instance_id = Net::HTTP.get(URI.parse METADATA_ENDPOINT)
+
+instance_name_tag = ec2.describe_tags({filters: [{name: "resource-id", values: [instance_id]}]}).to_h[:tags]
+  .find{|tag| tag[:key] == "Name"}
+
+tag = ec2.describe_instances(filters:[{ name: "tag:Name", values: [instance_name_tag[:value]] }])
+  .reservations.map(&:instances).flatten.map(&:tags).flatten.find{|tag| tag[:key] == "DEPLOY_REF_TYPE"}
+
+print tag[:value]
