@@ -6,3 +6,5 @@ REDIS_HOSTNAME: "localhost"
 
 RAILS_ENV: "development"
 SECRET_KEY_BASE: "9bb462167302ff84eb69f3820e97d80a4155fcba8514feb2fd66bbd512fd77d6d7b9bf26ef3c205ed260f152c93a548ed4ea87a4dd22d3c616bac2db297eb621"
+
+S3_BUCKET_NAME: "s3_bucket_name"
