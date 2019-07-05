@@ -39,7 +39,7 @@ set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true
 
-upload_env
+upload_env unless ENV["LOCAL_DEPLOY"]
 
 default_linked_files = [
   "config/application.yml",
@@ -54,15 +54,15 @@ append :linked_files, *default_linked_files
 
 set :linked_dirs, %w(log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads)
 
-upload_env
-
 namespace :deploy do
   desc "link application.yml"
   task :link_env do
     on roles(:all) do
-      update_env
+      update_env if ENV["LOCAL_DEPLOY"]
+      upload! "/home/ec2-user/demo_deploy/config/application.yml", "#{shared_path}/config/application.yml"
     end
   end
+
   before :migrate, :link_env
 
   desc "create database"
