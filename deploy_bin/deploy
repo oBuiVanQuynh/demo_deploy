@@ -7,7 +7,7 @@ function exit_failure() {
   exit 1;
 }
 
-SOURCE_CODE_DIR=/home/deploy/demo_deploy
+SOURCE_CODE_DIR=/home/ec2-user/demo_deploy
 echo "---> Move to $SOURCE_CODE_DIR";\
 cd $SOURCE_CODE_DIR || exit_failure "Move to $SOURCE_CODE_DIR";\
 echo "---> Fetch the codes from git repo";\
@@ -22,7 +22,7 @@ esac
 git reset --hard $REF -- || exit_failure "Pull the codes from git repo";\
 
 echo "---> Bundle install";\
-bundle --path /home/deploy/bundle || exit_failure "Bundle install";\
+bundle --path /home/ec2-user/bundle || exit_failure "Bundle install";\
 echo "---> Deploy";\
-DEPLOY_REF_TYPE=$1 DEPLOY_REF=$2 DEPLOYING_ROLES=$3 bundle exec cap $RAILS_ENV deploy || exit_failure "Deploy";\
+DEPLOY_REF_TYPE=$1 DEPLOY_REF=$2 DEPLOYING_ROLES=$3 PLATFORM=$4 bundle exec cap $RAILS_ENV deploy || exit_failure "Deploy";\
 echo "---> Done"
