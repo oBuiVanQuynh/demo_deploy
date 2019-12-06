@@ -881,7 +881,7 @@ GEM
     nokogiri (1.10.3)
       mini_portile2 (~> 2.4.0)
     public_suffix (3.1.0)
-    puma (3.11.4)
+    puma (3.12.2)
     rack (2.0.7)
     rack-protection (2.0.5)
       rack
@@ -993,7 +993,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   mysql2 (>= 0.4.4, < 0.6.0)
-  puma (~> 3.11)
+  puma (~> 3.12)
   rails (~> 5.2.3)
   sass-rails (~> 5.0)
   selenium-webdriver
